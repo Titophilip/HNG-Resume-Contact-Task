@@ -1,13 +1,16 @@
-const express = require("express")
-const app = express()
-const mongoose = require("mongoose")
-const path = require("path")
-const Contact = require("./model/contact.js")
+console.log("My name is Tito Ebeniro");
+
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+const path = require("path");
+const Contact = require("./model/contact.js");
+PORT = process.env.PORT || 4100;
 
 require("dotenv").config();
 
 const { MONGO_URI } = process.env
-console.log(MONGO_URI)
+
 mongoose.connect(
 	MONGO_URI,
 	{
@@ -24,8 +27,7 @@ app.get("/tito-ebeniro", async (req, res) => {
     try {
         res.sendFile(path.join(__dirname+'/resume/index.html'));
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({ message: error });
+        return res.status(404).json({ message: "Page not Found" });
     }
 })
 
@@ -37,10 +39,9 @@ app.post("/tito-ebeniro", async (req, res) => {
         }
         const contact = req.body;
         await Contact.create(contact)
-        console.log(contact)
 
         return res.status(200).json({ message: "Email sent successfully." })
-        // res.sendFile(path.join(__dirname+'/resume/index.html'));
+        
     } catch (error) {
         console.log(error.message)
         return res.status(500).json({ message: "Email not sent." });
@@ -48,6 +49,5 @@ app.post("/tito-ebeniro", async (req, res) => {
 })
 
 app.listen(4100, ()=> {
-    console.log("App is running on port 4100")
+    console.log(`App is running on port ${PORT}`)
 })
-console.log("My name is Tito Ebeniro")
