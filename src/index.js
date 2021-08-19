@@ -20,6 +20,7 @@ mongoose.connect(
 );
 
 app.use(express.json());
+app.use(express.static("resume"))
 
 app.get("/", async (req, res) => {
     try {
