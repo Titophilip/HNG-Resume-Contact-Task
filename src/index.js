@@ -5,6 +5,7 @@ const path = require("path");
 const Contact = require("./model/contact.js");
 PORT = process.env.PORT || 4100;
 
+
 require("dotenv").config();
 
 const { MONGO_URI } = process.env
@@ -47,6 +48,6 @@ app.post("/", async (req, res) => {
     }
 })
 
-app.listen(4100, ()=> {
+app.listen(PORT, ()=> {
     console.log(`App is running on port ${PORT}.`)
 })
