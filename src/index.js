@@ -31,7 +31,7 @@ app.get("/tito-ebeniro", async (req, res) => {
     }
 })
 
-app.post("/tito-ebeniro", async (req, res) => {
+app.post("/", async (req, res) => {
     const {name, email, subject, message} = req.body;
     try {
         if (!name || !email || !subject || !message) {
