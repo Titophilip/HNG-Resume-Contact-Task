@@ -1,4 +1,4 @@
-console.log("My name is Tito Ebeniro");
+console.log("My name is Tito Ebeniro.");
 
 const express = require("express");
 const app = express();
@@ -23,7 +23,7 @@ mongoose.connect(
 
 app.use(express.json());
 
-app.get("/tito-ebeniro", async (req, res) => {
+app.get("/", async (req, res) => {
     try {
         res.sendFile(path.join(__dirname+'/resume/index.html'));
     } catch (error) {
@@ -49,5 +49,5 @@ app.post("/", async (req, res) => {
 })
 
 app.listen(4100, ()=> {
-    console.log(`App is running on port ${PORT}`)
+    console.log(`App is running on port ${PORT}.`)
 })
