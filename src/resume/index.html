@@ -124,19 +124,53 @@ h3{
 
   <div>
     <h3>Contact Details</h3>
-    <form class="" action="" method="post" enctype="text/plain">
-      <label>Name:</label>
-      <input type="text" name="yourName" value=""><br>
-      <label>Email:</label>
-      <input type="email" name="yourEmail" value=""><br>
-      <label>Subject:</label>
-      <input type="text" name="yourmessage" value=""><br>
-      <label>Message:</label><br>
-      <textarea name="yourMessage:" rows="10" cols="34"></textarea><br>
-      <input type="submit" name="">
+    <form id="contact-form">
+      <label for="name">Name:</label>
+      <input type="text" name="yourName" id="name" value=""><br>
+
+      <label for="email">Email:</label>
+      <input type="email" name="yourEmail" id="email" value=""><br>
+
+      <label for="subject">Subject:</label>
+      <input type="text" name="yourmessage" id="subject" value=""><br>
+
+      <label for="message">Message:</label><br>
+      <textarea name="yourMessage:" rows="10" id="message" cols="34"></textarea><br>
+
+      <button name="submit" id="submit">submit</button>
   
     </form>
   </div>
+
+  <script type="text/javascript">
+    const contactForm = document.getElementById("contact-form")
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const subject = document.getElementById("subject").value;
+      const message = document.getElementById("message").value;
+      const url = "/tito-ebeniro"
+
+      const data = {name, email, subject, message}
+
+      request = new Request(url, {
+        method:  "POST",
+        body: JSON.stringify(data),
+        headers : new Headers({
+          "Content-Type": "application/json"
+        })
+      })
+
+      fetch(request)
+      .then((res) => res.json())
+      .then((res) => {
+        alert(res.message)
+      })
+    })
+
+  </script>
 </body>
 
 </html>
